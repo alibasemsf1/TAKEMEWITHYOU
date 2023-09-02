@@ -1,0 +1,130 @@
+<% include header %>           
+<%- include('sidebar', {menu:'footer-settings'}) %>  
+
+<div class="admin_main"> 
+    <div class="hd_admin_content hd_setting_page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>Footer Settings</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">
+                            <div id="home">
+                                <p><b>Note : </b>Please fill correct Basic information which will be shown on the customer view. </p>
+                                <form class="basic_setting_data">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Select Country <span class="req_">*</span></label>
+                                                <select name="country" class="form-control ad_select" data-placeholder="Country">
+                                                    <option value="" hidden>select country</option>
+                                                    <%for(let i in country){%>
+                                                        <option value="<%=country[i].name%>" <%if(footerSetting.country==country[i].name){%>selected<% } %> ><%=country[i].name%></option>
+                                                    <%}%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Select State <span class="req_">*</span></label>
+                                                <select name="state" class="form-control setting_state ad_select" data-placeholder="State" state-name="<%=footerSetting.state%>">
+                                                    <option value="" hidden></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">City <span class="req_">*</span></label>
+                                                <input type="text" name="city" placeholder="City" class="form-control" value="<%= footerSetting.city %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Town <span class="req_">*</span></label>
+                                                <input type="text" name="town" placeholder="Town" class="form-control" value="<%= footerSetting.town %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Currency <span class="req_">*</span></label>
+                                                <input type="text" name="currency" placeholder="Currency" class="form-control" value="<%= footerSetting.currency %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Currency Name <span class="req_">*</span></label>
+                                                <input type="text" name="currency_name" placeholder="Currency Name" class="form-control currency_text" value="<%= footerSetting.currency_name %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Shop Number <span class="req_">*</span></label>
+                                                <input type="text" name="shop_no" placeholder="Shop Number" class="form-control" value="<%= footerSetting.shop_no %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Street Address <span class="req_">*</span></label>
+                                                <input type="text" name="street" placeholder="Street Address" class="form-control" value="<%= footerSetting.street %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Support Mail <span class="req_">*</span></label>
+                                                <input type="text" name="support_mail" placeholder="Support Mail" class="form-control" value="<%= footerSetting.support_mail %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Contact Mail <span class="req_">*</span></label>
+                                                <input type="text" name="contact_mail" placeholder="Contact Mail" class="form-control" value="<%= footerSetting.contact_mail %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group phone_span">
+                                                <label class="ad_label">Phone Number <span class="req_">*</span></label>
+                                                <input type="tel" name="phone_no1" placeholder="Phone Number" class="form-control" value="<%= footerSetting.phone_no1 %>">
+                                                <span class="country_code">+91</span>
+                                                <input type="hidden" name="country_code" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group phone_span">
+                                                <label class="ad_label">Another Phone Number </label>
+                                                <input type="tel" name="phone_no2" placeholder="Another Phone Number" class="form-control" value="<%= footerSetting.phone_no2 %>">
+                                                <span class="country_code">+91</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Play Store Link </label>
+                                                <input type="text" name="play_store_link" placeholder="Play Store Link" class="form-control" value="<%= footerSetting.play_store_link %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">App Store </label>
+                                                <input type="text" name="app_store" placeholder="App Store" class="form-control" value="<%= footerSetting.app_store %>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <button class="ad_btn ad_mTop15 bg-blue basic_setting_save">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/element.js"></script>
+<script src="assets/js/page_js/settings.js"></script>
+
+</body>
+</html>

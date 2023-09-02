@@ -1,0 +1,57 @@
+<% include header %>           
+<%- include('sidebar', {menu:'add-on'}) %>   
+<div class="admin_main">
+    <div class="addon_manager_wrapper hd_admin_content">
+        <div class="col-xl-10 col-md-12 mb-3">
+            <a href="/admin/addon-zip-upload" class="hd_btn">Install/update Addon</a>
+        </div>
+        <div class="container-fluid">
+            <div class="addon_manager_section">
+                <% if(addOns.length>0){ %> 
+                    <ul>
+                        <% for(let i in addOns){ %> 
+                            <li>
+                                <div class="addon_list_section">
+                                <div class="addon_list_txt">
+                                    <div class="addon_payment_method">
+                                        <h4 class="fs-16 fw-600"><%if(addOns[i].name=='offline_payment_system'){ %>Offline Payment System<% }else if(addOns[i].name=='paypal'){ %>PayPal<% }else if(addOns[i].name=='stripe'){ %>Stripe<% }else if(addOns[i].name=='smsApi'){ %>SMS API<% }else if(addOns[i].name=='smtp'){ %>SMTP<% }else if(addOns[i].name=='rating'){ %>Rating<% }else{ %> Coupon <% } %> </h4>
+                                    </div>
+                                    <div class="addon_version">
+                                        <p><small>Version: <%= addOns[i].version %></small></p>
+                                    </div>
+                                </div>
+                                <div class="addon_list_button">
+                                    <span class="ad_addon_test"><% if(addOns[i].label){ %><%= addOns[i].label %><% }else{ %>  Not Installed<% } %></span>
+                                    <a href="<%= buy_now_link %>" class="ad_btn"><% if(addOns[i].label=='installed'){ %>Purchased<% }else{ %>Buy Now<% } %></a>
+                                </div>
+                                <div class="addon_list_img">
+                                    <img class="h-60px mb-3 mb-md-0" src="/images/add_ons/<%= addOns[i].image%>" alt="Image">
+                                </div>
+                                <div class="ap_autoresponder">
+                                        <label class="ap_toggle_label">
+                                            <input type="checkbox" class="changeStts addOn_status_change" add-on-id="<%= addOns[i].id %>" data-url="user_ajax/changeStatus/93" data-status="<%= addOns[i].status %>" <%if(addOns[i].status==1){%>checked<%}%> <% if(!addOns[i].label){ %>disabled<% } %>>
+                                            <div class="ap_user_check">
+                                                <span></span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </li>
+                        <% } %> 
+                    </ul>
+                <% }else{ %> 
+                    <div class="ad_nodata_textContent mt-3">
+                        <div class="vertical_center_data">
+                            <span class="nodata_img"><img src="./assets/images/nodata_found.svg" alt="No Data Found"/></span>
+                            <p>You have not purchased any Add-On.</p>
+                        </div>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer %>
+<script src="assets/js/page_js/add_on.js"></script> 
+</body>
+</html>

@@ -1,0 +1,150 @@
+<% include header %>           
+<%- include('sidebar', {menu:'merchant-settings'}) %>  
+
+<div class="admin_main"> 
+    <div class="hd_admin_content hd_setting_page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>Merchant Settings</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">
+                            <p><b>Note : </b>These details will show on your Invoice.</p>
+                            <form class="ad_mail_setting" id="merchant_details<%if(merchantDetails.length>0){ %>0<%}%>">
+                                <div class="row">
+                                    <div class="col-lg-6">                   
+                                        <div class="form-group">
+                                            <label class="ad_label">GSTIN Number <span class="req_">*</span></label>
+                                            <input class="form-control" MaxLength="15" placeholder="Enter GST Number" name="gst_number" type="text" value="<%=merchantDetails.gst_number%>">
+                                            <small class="text-danger"></small>
+                                        </div>
+                                    </div>  
+                                    <div class="col-lg-6">                   
+                                        <div class="form-group">
+                                            <label class="ad_label">PAN Card Number <span class="req_">*</span></label>
+                                            <input class="form-control" MaxLength="10" placeholder="Enter PAN Card Number" name="pan_number" type="text" value="<%=merchantDetails.pan_number%>">
+                                            <small class="text-danger"></small>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-6">                   
+                                        <div class="form-group ad_innerForm">
+                                            <h3 class="ad_subheading1">Sold By</h3>
+                                            <div class="row">
+                                                    
+                                                <div class="col-lg-6">                   
+                                                    <div class="form-group">
+                                                        <label class="ad_label">Shop Name <span class="req_">*</span></label>
+                                                        <input class="form-control" placeholder="Enter Shop Name" name="shop_name" type="text" value="<%=merchantDetails.shop_name%>">
+                                                        <small class="text-danger"></small>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-lg-6">                   
+                                                    <div class="form-group">
+                                                        <label class="ad_label">PIN Code <span class="req_">*</span></label>
+                                                        <input class="form-control" placeholder="Enter PIN Code" name="pin_code" type="text" value="<%=merchantDetails.pin_code%>">
+                                                        <small class="text-danger"></small>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-lg-4">
+                                                    <label class="ad_label">Country</label>
+                                                    <select name="merchant_country" class="form-control ad_select" data-placeholder="Select Country" disabled>
+                                                        <option value="" hidden>select country</option>
+                                                        <%for(let i in country){%>
+                                                            <option value="<%=country[i].name%>" <%if(footerSettings.country==country[i].name){%>selected<%}%>><%=country[i].name%></option>
+                                                        <%}%>
+                                                    </select>
+                                                    <small class="text-danger"></small>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="ad_label">State</label>
+                                                    <select name="merchant_state" class="form-control ad_select merchant_state" data-placeholder="Select State" disabled>
+                                                        <option value="<%=footerSettings.state%>" hidden><%if(footerSettings){%><%=footerSettings.state%><%}else{%>select state<%}%></option>
+                                                    </select>
+                                                    <small class="text-danger"></small>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="ad_label">City</label>
+                                                    <input class="form-control" placeholder="Enter City" name="merchant_city" type="text" value="<%=footerSettings.city%>" disabled>
+                                                    <small class="text-danger"></small>
+                                                </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <div class="form-group">
+                                                        <label class="ad_label">Shipping Charges (in state) <span class="req_">*</span></label>
+                                                        <input type="text" name="shipping_charges_in" placeholder="Shipping Charges (in state)" class="form-control" value="<%=merchantDetails.shipping_charges_in%>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 mt-3">
+                                                    <div class="form-group">
+                                                        <label class="ad_label">Shipping Charges (out state) <span class="req_">*</span></label>
+                                                        <input type="text" name="shipping_charges_out" placeholder="Shipping Charges (out state)" class="form-control" value="<%=merchantDetails.shipping_charges_out%>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 mt-3">
+                                                    <label class="ad_label">Address <span class="req_">*</span></label>
+                                                    <textarea rows="4" name="merchant_address" class="form-control ad_textarea" placeholder="Address"><%=merchantDetails.merchant_address%></textarea>
+                                                    <small class="text-danger"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="col-lg-6">                   
+                                        <div class="form-group ad_innerForm">
+                                            <h3 class="ad_subheading1">Other Details</h3>
+                                            <div class="row">
+                                                
+                                                <div class="col-lg-6"> 
+                                                    <div class="form-group">
+                                                        <label class="ad_label">Upload Signature <span class="req_">*</span></label>
+                                                        <label class="ad_upload form-control ad_upload_merchantLogo">
+                                                            <input type="file" placeholder="Image upload" class="d-none edit_coupon_card" id="merchant_signfile" name="signature" value="">
+                                                            <span><% if(merchantDetails.signature){ %><%=merchantDetails.signature%><%}else{%>Choose file<%}%></span>
+                                                        </label>
+                                                        <span class="hd_note">Note: Recommended image size should be less than or equal to 286x149.</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-6"> 
+                                                    <!-- <label class="ad_label"> <span class="req_">*</span></label> -->
+                                                    <div id="preview_image_setting" class="ad_preview_image_logo" style="background-image: url('<% if(merchantDetails.signature){ %>/uploads/logo+icon/<%=merchantDetails.signature%><%}else{%>/images/signature.png<%}%>');"></div>
+                                                    <small class="text-danger"></small>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 mt-3">
+                                                    <label class="ad_label">Declaration <span class="req_">*</span></label>
+                                                    <textarea rows="6" name="declaration" class="form-control ad_textarea declaration" placeholder="Declaration"><%- merchantDetails.declaration %></textarea>
+                                                    <small class="text-danger"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-12 mt-3">
+                                        <label class="ad_label">Terms & Conditions<span class="req_">*</span></label>
+                                        <textarea rows="4" name="terms_condition" class="form-control ad_textarea terms_cond" placeholder="Terms & Conditions"><%- merchantDetails.terms_condition %></textarea>
+                                        <small class="text-danger"></small>
+                                    </div>                    
+                                    
+                                    <div class="col-md-12"> 
+                                        <button type="button" class="ad_btn ad_mTop15 save_merchant_details">Save</button>
+                                        <div class="clear-both"></div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/settings.js"></script>
+
+
+</body>
+</html>

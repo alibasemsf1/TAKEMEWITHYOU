@@ -1,0 +1,152 @@
+<% include header %>           
+<%- include('sidebar', {menu:'settings'}) %>  
+<!-- google fonts for editor start -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Maven+Pro%7CLato%7CLobster%7CLora%7CMontserrat%7COpen+Sans%7COswald%7CPT+Sans%7CPacifico%7CRaleway%7CRoboto%7CRoboto+Slab" media="all">
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<!-- google fonts for editor end -->
+
+
+<div class="admin_main"> 
+    <div class="hd_admin_content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>Appearance</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">
+                            <p><b>Note : </b> We provide a demo data related to Home Delivery.</p>
+                            <div class="row" id="appearence_data">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label class="ad_label">Title <span class="req_">*</span></label>
+                                        <input type="text" name="theme_name" placeholder="Title" class="form-control" value="<%if(themeSettingJson.theme_name){%><%= themeSettingJson.theme_name %><%}else{%>Home Delivery<% } %>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label class="ad_label">Select Font <span class="req_">*</span></label>
+                                        <select name="font" class="form-control ad_select">
+                                            <option value="" hidden>Select Font</option>
+                                            <option style='font-family: Lato;' value="Lato" <%if(themeSettingJson.font=='Lato'){%>selected<%}%>>Lato</option>
+                                            <option style='font-family: Lobster;' value="Lobster" <%if(themeSettingJson.font=='Lobster'){%>selected<%}%>>Lobster</option>
+                                            <option style='font-family: Lora;' value="Lora" <%if(themeSettingJson.font=='Lora'){%>selected<%}%>>Lora</option>
+                                            <option style='font-family: Maven+Pro;' value="Maven+Pro" <%if(themeSettingJson.font=='Maven+Pro'){%>selected<%}%>>Maven Pro</option>
+                                            <option style='font-family: Montserrat;' value="Montserrat" <%if(themeSettingJson.font=='Montserrat'){%>selected<%}%>>Montserrat</option>
+                                            <option style='font-family: Open+Sans;' value="Open+Sans" <%if(themeSettingJson.font=='Open+Sans'){%>selected<%}%>>Open Sans</option>
+                                            <option style='font-family: Oswald;' value="Oswald" <%if(themeSettingJson.font=='Oswald'){%>selected<%}%>>Oswald</option>
+                                            <option style='font-family: Pacifico;' value="Pacifico" <%if(themeSettingJson.font=='Pacifico'){%>selected<%}%>>Pacifico</option>
+                                            <option style='font-family: PT+Sans;' value="PT+Sans" <%if(themeSettingJson.font=='PT+Sans'){%>selected<%}%>>PT Sans</option>
+                                            <option style='font-family: Raleway;' value="Raleway" <%if(themeSettingJson.font=='Raleway'){%>selected<%}%>>Raleway</option>
+                                            <option style='font-family: Roboto;' value="Roboto" <%if(themeSettingJson.font=='Roboto'){%>selected<%}%>>Roboto</option>
+                                            <option style='font-family: Roboto+Slab;' value="Roboto+Slab" <%if(themeSettingJson.font=='Roboto+Slab'){%>selected<%}%>>Roboto Slab</option>
+                                            <option style='font-family: Yantramanav;' value="Yantramanav" <%if(themeSettingJson.font=='Yantramanav'){%>selected<%}else{%>selected<%}%>>Yantramanav</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6 col-6">
+                                            <div class="form-group">
+                                                <label class="ad_label">Theme Color <span class="req_">*</span></label>
+                                                <div class="ad_color_picker">
+                                                    <input type="text" name="theme_color" class="ad_colorPicker" value="<% if(themeSettingJson.theme_color){ %><%= themeSettingJson.theme_color %><% }else{ %>#00D4BB<% } %>"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-6">
+                                            <div class="form-group">
+                                                <label class="ad_label">Hover Color <span class="req_">*</span></label>
+                                                <div class="ad_color_picker">
+                                                    <input type="text" name="hover_color" class="ad_colorPicker" value="<% if(themeSettingJson.hover_color){ %><%= themeSettingJson.hover_color %><% }else{ %>#fbe636<% } %>"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <span class="label_text">Upload Header Logo <span class="req_">*</span></span>
+                                        <div class="ad_logo_picker">
+                                            <label for="choose_logo">  
+                                                <input type="file" name="upload_logo" class="ad_logo_input" id="choose_logo" onchange="previewLogoFile(this);" required>
+                                            </label>
+                                            <span class="uploade_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="70" height="70" x="0" y="0" viewBox="0 0 52 52"><g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M26,50C12.767,50,2,39.233,2,26   S12.767,2,26,2s24,10.767,24,24S39.233,50,26,50z" fill="#00d4bb" data-original="#00d4bb"></path>
+                                                        <path d="M38.5,25H27V14c0-0.553-0.448-1-1-1s-1,0.447-1,1v11H13.5c-0.552,0-1,0.447-1,1s0.448,1,1,1H25v12c0,0.553,0.448,1,1,1   s1-0.447,1-1V27h11.5c0.552,0,1-0.447,1-1S39.052,25,38.5,25z" fill="#00d4bb" data-original="#00d4bb"></path></g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <!-- <span class="inner_text">Upload Your Logo here...</span> -->
+                                        </div>
+                                        <div class="preview_image_dv">
+                                            <img id="previewImg" src="<% if(themeSettingJson.logo){%>/uploads/logo+icon/<%= themeSettingJson.logo %><%}else{%>/images/logo.png<%}%>" alt="Placeholder">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span class="label_text">Upload Footer Logo <span class="req_">*</span></span>
+                                        <div class="ad_logo_picker">
+                                            <label for="choose_logo">  
+                                                <input type="file" name="upload_logo" class="ad_logo_input" id="chooseFooter_logo" onchange="previewFooterLogoFile(this);" required>
+                                            </label>
+                                            <span class="uploade_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="70" height="70" x="0" y="0" viewBox="0 0 52 52"><g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M26,50C12.767,50,2,39.233,2,26   S12.767,2,26,2s24,10.767,24,24S39.233,50,26,50z" fill="#00d4bb" data-original="#00d4bb"></path>
+                                                        <path d="M38.5,25H27V14c0-0.553-0.448-1-1-1s-1,0.447-1,1v11H13.5c-0.552,0-1,0.447-1,1s0.448,1,1,1H25v12c0,0.553,0.448,1,1,1   s1-0.447,1-1V27h11.5c0.552,0,1-0.447,1-1S39.052,25,38.5,25z" fill="#00d4bb" data-original="#00d4bb"></path></g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <!-- <span class="inner_text">Upload Your Logo here...</span> -->
+                                        </div>
+                                        <div class="preview_image_dv">
+                                            <img id="previewFooterImg" src="<% if(themeSettingJson.footer_logo){%>/uploads/logo+icon/<%= themeSettingJson.footer_logo %><%}else{%>/images/footer_logo.png<%}%>" alt="Placeholder">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <span class="label_text">Upload Favicon <span class="req_">*</span></span>
+                                        <div class="ad_logo_picker">
+                                            <label for="choose_favicon">  
+                                                <input type="file" name="upload_icon" class="ad_logo_input" id="choose_favicon" onchange="previewFavicon(this);" required>
+                                            </label>
+                                            <span class="uploade_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="70" height="70" x="0" y="0" viewBox="0 0 52 52"><g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M26,50C12.767,50,2,39.233,2,26   S12.767,2,26,2s24,10.767,24,24S39.233,50,26,50z" fill="#00d4bb" data-original="#00d4bb"></path>
+                                                        <path d="M38.5,25H27V14c0-0.553-0.448-1-1-1s-1,0.447-1,1v11H13.5c-0.552,0-1,0.447-1,1s0.448,1,1,1H25v12c0,0.553,0.448,1,1,1   s1-0.447,1-1V27h11.5c0.552,0,1-0.447,1-1S39.052,25,38.5,25z" fill="#00d4bb" data-original="#00d4bb"></path></g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <!-- <span class="inner_text">Upload Your Favicon here...</span> -->
+                                        </div>
+                                        <div class="preview_image_dv preview_favicon">
+                                            <img id="previewImgfavicon" src="<% if(themeSettingJson.favicon){%>/uploads/logo+icon/<%= themeSettingJson.favicon %><%}else{%>/images/favicon.png<%}%>" alt="Placeholder">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="ad_btn ad_mTop15 bg-blue save_theme_setting">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/element.js"></script>
+<script src='/common_js_css/js/colorpicker/spectrum.js'></script>
+<script src="/common_js_css/js/dom-to-image.min.js"></script>
+<script src="assets/js/page_js/settings.js"></script>
+
+</body>
+</html>

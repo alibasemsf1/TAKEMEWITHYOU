@@ -1,0 +1,100 @@
+<% include header %>           
+<!-- <link rel="stylesheet" href="/admin/css/dropzone.css"> -->
+    <link rel="stylesheet" href="/admin/css/image-uploader.min.css">
+<%- include('sidebar', {menu:'product'}) %>   
+<div class="admin_main">
+    <div class="row ad_mTop50">
+        <div class="col-12">
+            <div class="ad_datatable_wrapper" id="check_product">
+                <div class="row align-items-center ad_mBottom20">
+                    <div class="col-4">
+                        <h5 class="ad_subheading">Add Products</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="ad_label">Product Name</label>
+                            <input type="text" placeholder="Enter Product Name" class="form-control hd_product_name"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Description</label>
+                            <textarea placeholder="Enter description of your product" class="form-control hd_product_desc"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Shipping Policy</label>
+                            <textarea placeholder="Enter description of your product" class="form-control shipping_policy"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Select Category</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control hd_cat_data" data-placeholder="Select Category">
+                                    <option></option>
+                                    <% for(let i in category){ %>
+                                    <option value="<%= category[i].id %>"><%= category[i].title %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Select Sub Category</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control hd_sc_data" data-placeholder="Select Sub Category" disabled>
+                                    <option></option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Product expected delivered duration</label>
+                            <div class="ad_select_box datepicker_holder">
+                                <input type="number" min="0" placeholder="Enter delivery duration" class="form-control duration">
+                            </div>
+                        </div>
+                        <button type="button" class="hd_btn save_products">Save</button>
+                        <a href="/admin/product-master/products" class="hd_btn back_to_products">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Image Modal -->
+<div class="modal fade ad_modal " id="ProductsImages" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Upload product variation images</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <!-- <form method="post" action="/uploads/products/" class="dropzone">
+                <div class="fallback">
+                  <input name="file" type="file" multiple />
+                </div>
+            </form> -->
+            <form method="POST" name="form-example-1" id="form-example-1" enctype="multipart/form-data">
+                <div class="input-field">
+                    <!-- <label class="active">Photos</label> -->
+                    <div class="input-images-2" style="padding-top: .5rem;"></div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer justify-content-start">
+            <button type="button" class="ad_btn ad_hollowBtn" data-dismiss="modal">Close</button>
+            <button type="button" class="ad_btn bg-blue add_variation_image">Save changes</button>
+        </div>
+    </div>
+    </div>
+</div>
+<% include footer %>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/page_js/product.js"></script>
+<!-- <script src="assets/js/dropzone.js"></script> -->
+<script type="text/javascript" src="assets/js/image-uploader.min.js"></script>
+
+</body>
+</html>

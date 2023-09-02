@@ -1,0 +1,58 @@
+<% include header %>           
+<%- include('sidebar', {menu:'sms-api'}) %> 
+
+<div class="admin_main"> 
+    <div class="hd_admin_content hd_setting_page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>Message API Integration Settings</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">    
+                            <p><b>Note : </b>Please fill correct API information, If not then the message will not send to customers. </p>
+                            <form class="ad_mail_setting" id="msg_api">
+                                <div class="row">
+                                    <div class="col-md-6">                   
+                                        <div class="form-group">
+                                            <label class="ad_label">AUTH KEY <span class="req_">*</span></label>
+                                            <input class="form-control" placeholder="Auth Key" name="msg_api_auth_key" type="text" value="<%=smsApiData.msg_api_auth_key%>">
+                                            <small class="text-danger"></small>
+                                        </div>
+                                    </div>                         
+                                    <div class="col-md-6">  
+                                        <div class="form-group">
+                                            <label class="ad_label">SENDER ID <span class="req_">*</span></label>
+                                            <input class="form-control" placeholder="User" name="msg_api_user" type="text" value="<%=smsApiData.msg_api_user%>">
+                                            <small class="text-danger"></small>
+                                        </div>
+                                    </div>                         
+                                    <div class="col-md-6">  
+                                        <div class="form-group">
+                                            <label class="ad_label">ROUTE NUMBER <span class="req_">*</span></label>
+                                            <input class="form-control" placeholder="Transactional Key" name="msg_api_transac_key" type="text" value="<%=smsApiData.msg_api_transac_key%>">
+                                            <small class="text-danger"></small>
+                                        </div>  
+                                    </div>  
+                                    <div class="col-md-12"> 
+                                        <button type="button" class="ad_btn ad_mTop15 save_MSG_API">Save</button>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/settings.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<% include header %>           
+<%- include('sidebar', {menu:'seo-settings'}) %>  
+
+<div class="admin_main"> 
+    <div class="hd_admin_content hd_setting_page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>SEO Settings</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper" id="seo_validation">
+                            <form class="seo_setting_data">
+                                <div class="ad_seo_setting ">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Meta Title <span class="req_">*</span></label>
+                                                <input type="text" name="title" class="form-control" value="<%= seoJson.title %>" placeholder="Enter your title here...">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Meta Keyword <span class="req_">*</span></label>
+                                                <input type="text" name="keyword" class="form-control" value="<%= seoJson.keyword %>" placeholder="Enter your keyword here...">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Meta Author</label>
+                                                <input type="text" name="author" class="form-control" value="<%= seoJson.author %>" placeholder="Enter you author here...">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="ad_label">Meta Description <span class="req_">*</span></label>
+                                                <textarea name="description" class="form-control" placeholder="Enter you discription here..."><%- seoJson.description %></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button class="ad_btn ad_mTop15 save_seo_setting">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/element.js"></script>
+<script src="assets/js/page_js/settings.js"></script>
+
+</body>
+</html>

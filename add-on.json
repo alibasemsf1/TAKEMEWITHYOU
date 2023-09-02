@@ -1,0 +1,37 @@
+{
+    "add-on1": {
+        "name": "offline_payment_system",
+        "version": "1.0",
+        "image": "offline_payment_system.jpg"
+    },
+    "add-on2": {
+        "name": "paypal",
+        "version": "1.0",
+        "image": "paypal.jpg"
+    },
+    "add-on3": {
+        "name": "stripe",
+        "version": "1.0",
+        "image": "stripe.jpg"
+    },
+    "add-on4": {
+        "name": "smsApi",
+        "version": "1.0",
+        "image": "smsApi.jpg"
+    },
+    "add-on5": {
+        "name": "smtp",
+        "version": "1.0",
+        "image": "smtp.jpg"
+    },
+    "add-on6": {
+        "name": "coupon",
+        "version": "1.0",
+        "image": "coupon.jpg"
+    },
+    "add-on7": {
+        "name": "rating",
+        "version": "1.0",
+        "image": "rating.jpg"
+    }
+}

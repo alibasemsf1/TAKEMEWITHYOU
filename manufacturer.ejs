@@ -1,0 +1,348 @@
+
+<% include header %>           
+<%- include('sidebar', {menu:'manufacturer'}) %>   
+<div class="admin_main">
+    <div class="row">
+        <div class="col-xl-6 col-md-12">
+            <button class="hd_btn" data-toggle="modal" data-target="#addProducts">+ Add Product</button>
+        </div>
+    </div>
+    <div class="row ad_mTop30">
+        <div class="col-12">
+            <% if(manufProduct != 0) { %>
+                <div class="ad_datatable_wrapper">
+                    <div class="row align-items-center ad_mBottom20">
+                        <div class="col-12 col-xl-3 col-lg-3">
+                            <h5 class="ad_subheading">Product</h5>
+                        </div>
+                        
+                        <div class="col-12 col-xl-3 col-lg-3 text-right">
+                            <div class="ad_search_wrapper">
+                                <input type="text" class="form-control ad_datatableSearch" placeholder="Enter product name here..." />
+                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="search">
+                                    <path d="M8.3283 0C3.73857 0 0 3.73857 0 8.3283C0 12.918 3.73857 16.6566 8.3283 16.6566C10.3242 16.6566 12.1571 15.9479 13.5937 14.7714L18.5663 19.7439C18.643 19.8239 18.7349 19.8877 18.8366 19.9316C18.9383 19.9756 19.0478 19.9988 19.1586 20C19.2694 20.0011 19.3793 19.9801 19.4819 19.9382C19.5845 19.8963 19.6777 19.8344 19.756 19.756C19.8344 19.6777 19.8963 19.5845 19.9382 19.4819C19.9801 19.3793 20.0011 19.2694 20 19.1586C19.9988 19.0478 19.9756 18.9383 19.9316 18.8366C19.8877 18.7349 19.8239 18.643 19.7439 18.5663L14.7714 13.5937C15.9479 12.1571 16.6566 10.3242 16.6566 8.3283C16.6566 3.73857 12.918 0 8.3283 0ZM8.3283 1.66566C12.0178 1.66566 14.9909 4.63876 14.9909 8.3283C14.9909 12.0178 12.0178 14.9909 8.3283 14.9909C4.63876 14.9909 1.66566 12.0178 1.66566 8.3283C1.66566 4.63876 4.63876 1.66566 8.3283 1.66566Z"></path>
+                                    </svg></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="ad_label">Filter by Date</label>
+                                <div class="ad_select_filter">
+                                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                                        <i class="fa fa-calendar"></i>&nbsp;
+                                        <span></span> <i class="fa fa-caret-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-3 col-lg-3">
+                            <div class="form-group">
+                                <label class="ad_label">Search by Agency Name</label>
+                                <div class="ad_select_box">
+                                    <select class="ad_select form-control serch_agency" data-placeholder="Select Agency">
+                                        <option></option>
+                                        <% for(let i in agency){ %>
+                                            <option value="<%=agency[i].id%>"><%=agency[i].name%> </option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <p><b>Note : </b> After adding products please visit on <a href="/admin/products" style="color: #1d7de0;">all products </a>for further settings.</p>
+                    <table id="example" class="table ad_table mainTable" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Purchase Date</th>
+                                <th>Product Name</th>
+                                <th>Product Variation</th>
+                                <th>Purchasing Price</th>
+                                <th>Quantity</th>
+                                <th>Total Purchase Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody> </tbody>
+                    </table>
+                </div>
+            <% }else{ %>
+                <div class="ad_nodata_textContent mt-3">
+                    <div class="vertical_center_data">
+                        <span class="nodata_img"><img src="./assets/images/nodata_found.svg" alt="No Data Found"/></span>
+                        <p>You have not added any product yet. Feel free to add product by clicking on Add Product button.Before adding product please make sure that you have added categories and agency.</p>
+                    </div>
+                </div>
+            <% } %>  
+        </div>
+    </div>
+</div>
+<div class="modal fade ad_modal " id="addProducts" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="close_popup" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="manu_products">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="ad_label">Select Agency</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control agency_name" data-placeholder="Select agency">
+                                    <option></option>
+                                    <% for(let i in agency){ %>
+                                        <option value="<%=agency[i].id%>"><%=agency[i].name%> </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Invoice Number</label>
+                            <input type="text" placeholder="Enter Invoice Number" class="form-control invoice_number">
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Select category</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control category_data" data-placeholder="Select Category">
+                                    <option></option>
+                                    <% for(let i in category){ %>
+                                        <option value="<%=category[i].id%>"><%=category[i].title%> </option>
+                                    <% } %> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Select sub category</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control subcategory_data" data-placeholder="Select sub category">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label ">Product Name </label>
+                            <input type="text" placeholder="Enter Product Name" class="form-control product_name">
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label ad_tooltiplabel">Low Product Quantity 
+                                <span class="ad_infoicon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 524.235 524.235" height="20" viewBox="0 0 524.235 524.235" width="20" style="fill: #688FA9;"><path d="m262.118 0c-144.53 0-262.118 117.588-262.118 262.118s117.588 262.118 262.118 262.118 262.118-117.588 262.118-262.118-117.589-262.118-262.118-262.118zm17.05 417.639c-12.453 2.076-37.232 7.261-49.815 8.303-10.651.882-20.702-5.215-26.829-13.967-6.143-8.751-7.615-19.95-3.968-29.997l49.547-136.242h-51.515c-.044-28.389 21.25-49.263 48.485-57.274 12.997-3.824 37.212-9.057 49.809-8.255 7.547.48 20.702 5.215 26.829 13.967 6.143 8.751 7.615 19.95 3.968 29.997l-49.547 136.242h51.499c.01 28.356-20.49 52.564-48.463 57.226zm15.714-253.815c-18.096 0-32.765-14.671-32.765-32.765 0-18.096 14.669-32.765 32.765-32.765s32.765 14.669 32.765 32.765c0 18.095-14.668 32.765-32.765 32.765z"/></svg>
+                                </span>
+                                <div class="tooptip_info">
+                                    <p>You will get notify when the availability of product is gone below your set quantity.</p>
+                                </div>
+                            </label>
+                            <input type="text" placeholder="Enter Low Product Quantity" class="form-control low_quantity">
+                        </div>
+                        <div class="col-lg-12 ad_mBottom30 text-right">
+                            <button type="button" class="ad_btn bg-blue add_mfvariation_row">+ add variation</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table ad_table variation_table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Unit and Variation</th>
+                                        <th>Purchase Price</th>
+                                        <th>Quantity</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="serial_no">1</td>
+                                        <td>
+                                            <input type="text" placeholder="1 litre" class="form-control variation ad_edit_pv">
+                                            <div class="form-group ad_select_dv">
+                                                <div class="ad_select_box select_unit">
+                                                    <select class="ad_select form-control unit" data-placeholder="Select Unit" >
+                                                        <option></option>
+                                                        <% for(let i in unit){ %>
+                                                            <option value="<%=unit[i].id%>"><%=unit[i].name%> </option>
+                                                        <% } %> 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><input type="number" min="0" placeholder="Enter purchase price" class="form-control purchasing_price" value=""></td>
+                                        <td><input type="number" min="0" placeholder="Enter quantity" class="form-control quantity"></td>
+                                    </tr>
+                                </tbody>
+                            </table>        
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start hd_modal_footer">
+                <button type="button" class="ad_btn ad_hollowBtn close_tab" data-dismiss="modal">Close</button>
+                <button type="button" class="ad_btn bg-blue save_prod_manuf">Add in stock</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade ad_modal " id="editProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Products</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="close_popup" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="manu_products">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="ad_label">Select Agency</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control edit_agency_name" data-placeholder="Select agency" disabled="">
+                                    <option></option>
+                                    <% for(let i in agency){ %>
+                                        <option value="<%=agency[i].id%>"><%=agency[i].name%> </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Invoice Number</label>
+                            <input type="text" placeholder="Enter Invoice Number" class="form-control edit_invoice_number" disabled="">
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Select category</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control edit_category_data" data-placeholder="Select Category" disabled="">
+                                    <option></option>
+                                    <% for(let i in category){ %>
+                                        <option value="<%=category[i].id%>"><%=category[i].title%> </option>
+                                    <% } %> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Select sub category</label>
+                            <div class="ad_select_box">
+                                <select class="ad_select form-control edit_subcategory_data" data-placeholder="Select sub category" disabled="">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label">Product Name</label>
+                            <input type="text" placeholder="Enter Product Name" class="form-control edit_product_name" disabled="">
+                        </div>
+                        <div class="form-group">
+                            <label class="ad_label ad_tooltiplabel">Low Product Quantity 
+                                <span class="ad_infoicon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 524.235 524.235" height="20" viewBox="0 0 524.235 524.235" width="20" style="fill: #688FA9;"><path d="m262.118 0c-144.53 0-262.118 117.588-262.118 262.118s117.588 262.118 262.118 262.118 262.118-117.588 262.118-262.118-117.589-262.118-262.118-262.118zm17.05 417.639c-12.453 2.076-37.232 7.261-49.815 8.303-10.651.882-20.702-5.215-26.829-13.967-6.143-8.751-7.615-19.95-3.968-29.997l49.547-136.242h-51.515c-.044-28.389 21.25-49.263 48.485-57.274 12.997-3.824 37.212-9.057 49.809-8.255 7.547.48 20.702 5.215 26.829 13.967 6.143 8.751 7.615 19.95 3.968 29.997l-49.547 136.242h51.499c.01 28.356-20.49 52.564-48.463 57.226zm15.714-253.815c-18.096 0-32.765-14.671-32.765-32.765 0-18.096 14.669-32.765 32.765-32.765s32.765 14.669 32.765 32.765c0 18.095-14.668 32.765-32.765 32.765z"/></svg>
+                                </span>
+                                <div class="tooptip_info">
+                                    <p>You will get notify when the availability of product is gone below your set quantity.</p>
+                                </div>
+                            </label>
+                            <input type="text" placeholder="Enter Low Product Quantity" class="form-control edit_low_quantity">
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table ad_table edit_variation_table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Unit and Variation</th>
+                                        <th>Purchase Price</th>
+                                        <th>Quantity</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            <input type="text" placeholder="1 litre" class="form-control edit_product_variation ad_edit_pv" disabled="">
+                                            <div class="form-group ad_select_dv">
+                                                <div class="ad_select_box select_unit">
+                                                    <select class="ad_select form-control edit_unit unit_disabled" data-placeholder="Select Unit" disabled="">
+                                                        <option></option>
+                                                        <% for(let i in unit){ %>
+                                                            <option value="<%=unit[i].id%>"><%=unit[i].name%> </option>
+                                                        <% } %> 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><input type="number" min="0" placeholder="Enter purchase price" class="form-control edit_purchasing_price"></td>
+                                        <td><input type="number" min="0" placeholder="Enter quantity" class="form-control edit_quantity"></td>
+                                    </tr>
+                                </tbody>
+                            </table>        
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start">
+                <button type="button" class="ad_btn ad_hollowBtn close_edit_tab" data-dismiss="modal">Close</button>
+                <button type="button" class="ad_btn bg-blue update_product">Update changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- delete popup -->
+<div class="modal fade ad_modal" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header read_bg">
+            <h5 class="modal-title" id="exampleModalLongTitle">Delete Modal</h5>
+            <button type="button" class="close delete_product" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <h3 class="ad_subheading m-0">Are you sure?</h3>
+            <p>You want to delete this product, if you deleted then it will be reflected on the frontend!</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="ad_btn ad_hollowBtn no_delete_product" data-dismiss="modal">Cancel</button>
+            <button type="button" class="ad_btn bg-blue yes_delete_product">Yes, delete it!</button>
+        </div>
+    </div>
+    </div>
+</div>
+<% include footer %>
+<script src="/common_js_css/js/datatable/dataTables.buttons.min.js"></script>
+<script src="/common_js_css/js/datatable/jszip.min.js"></script>
+<script src="/common_js_css/js/datatable/buttons.html5.min.js"></script>
+<script src="assets/js/page_js/manufacturer.js"></script>
+<script type="text/javascript" src="/common_js_css/js/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/common_js_css/css/daterangepicker.css" />
+
+<script type="text/javascript">
+    $(function() {
+        var start = moment().subtract(6, 'days');
+        var end = moment();
+    
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+    
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+            //    'Today': [moment(), moment()],
+            //    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'This Week': [moment().startOf('week').toDate(), moment()],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+    
+        cb(start, end);
+    });
+    </script>
+</body>
+</html>

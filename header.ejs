@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><% if(themeSettingJson!=''){ %><%= themeSettingJson.theme_name %><% }else{ %>Home Delivery <% } %> | <%= pathName %></title>
+        <meta content="<% if(seoJson!=''){ %><%= seoJson.title %><% }else{ %>Home Delivery <% } %>" property="og:title">
+        <meta content="website" property="og:type">
+        <meta content="<%= seoJson.keyword %>" property="og:keyword">
+        <meta content="<%= seoJson.author %>" property="og:author">
+        <meta content="<%= seoJson.description %>" property="og:description">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/common_js_css/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/common_js_css/js/select2/select2.min.css" />
+        <link rel="stylesheet" href="/common_js_css/css/bootstrap-datepicker.min.css"/>
+        <link rel="stylesheet" href="/common_js_css/js/colorpicker/spectrum.css">
+        <link rel="stylesheet" href="/common_js_css/js/datatable/datatables.min.css">
+        <link rel="stylesheet" href="/common_js_css/js/toastr/toastr.min.css" />
+        <link rel="stylesheet" href="/common_js_css/js/datatable/responsive/responsive.dataTables.min.css">
+        <!-- <link rel="stylesheet" href="/common_js_css/css/daterangepicker.min.css"> -->
+        <link rel="stylesheet" href="/common_js_css/js/airdatepicker/datepicker.min.css">
+        <link rel="stylesheet" href="/assets/admin/css/style.css">
+        <link rel="icon" href="<% if(themeSettingJson.favicon){%>/assets/uploads/logo+icon/<%= themeSettingJson.favicon%><%}else{%>/assets/images/favicon.png<%}%>">
+    </head>
+    <body>
+        <div class="ad_loader">
+            <img src="/images/loader.svg" alt="" class="img-fluid">
+        </div>
+        <div class="admin_main_wrapper ad_mainMenuOpen">
+            <div class="admin_header">
+                <div class="ad_headerLeft"><span class="ad_toggle"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20px" height="20px"><path d="M 0 2 L 0 4 L 24 4 L 24 2 Z M 0 11 L 0 13 L 24 13 L 24 11 Z M 0 20 L 0 22 L 24 22 L 24 20 Z"/></svg></span><span class="header_logo_img"><a href="/admin/dashboard"><img src="<% if(themeSettingJson.logo){%>/uploads/logo+icon/<%= themeSettingJson.logo%><%}else{%>/images/logo.png<%}%>" alt=""/></a></span></div>
+                <div class="ad_headerRight">
+                    <div class="ad_notification">
+                        <span class="ad_notifiClick">
+                            <span class="notification_count">0</span>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M467.819,431.851l-36.651-61.056c-16.896-28.181-25.835-60.437-25.835-93.312V224c0-82.325-67.008-149.333-149.333-149.333S106.667,141.675,106.667,224v53.483c0,32.875-8.939,65.131-25.835,93.312l-36.651,61.056c-1.984,3.285-2.027,7.403-0.149,10.731c1.899,3.349,5.461,5.419,9.301,5.419h405.333c3.84,0,7.403-2.069,9.301-5.419C469.845,439.253,469.803,435.136,467.819,431.851z M72.171,426.667l26.944-44.907C118.016,350.272,128,314.219,128,277.483V224c0-70.592,57.408-128,128-128s128,57.408,128,128v53.483c0,36.736,9.984,72.789,28.864,104.277l26.965,44.907H72.171z"></path></g></g><g><g><path d="M256,0c-23.531,0-42.667,19.136-42.667,42.667v42.667C213.333,91.221,218.112,96,224,96s10.667-4.779,10.667-10.667V42.667c0-11.776,9.557-21.333,21.333-21.333s21.333,9.557,21.333,21.333v42.667C277.333,91.221,282.112,96,288,96s10.667-4.779,10.667-10.667V42.667C298.667,19.136,279.531,0,256,0z"></path></g></g><g><g><path d="M302.165,431.936c-3.008-5.077-9.515-6.741-14.613-3.819c-5.099,2.987-6.805,9.536-3.819,14.613c2.773,4.715,4.288,10.368,4.288,15.936c0,17.643-14.357,32-32,32c-17.643,0-32-14.357-32-32c0-5.568,1.515-11.221,4.288-15.936c2.965-5.099,1.259-11.627-3.819-14.613c-5.141-2.923-11.627-1.259-14.613,3.819c-4.715,8.064-7.211,17.301-7.211,26.731C202.667,488.085,226.581,512,256,512s53.333-23.915,53.376-53.333C309.376,449.237,306.88,440,302.165,431.936z"></path></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                        </span>
+                        
+                        <div class="ad_notificationDropdown">
+                            <div class="hd_notification_header"><h4>Notifications </h4></div>
+                            <ul class="notify_list"></ul>
+                        </div>
+                    </div>
+                    <div class="ad_profile_wrapper">
+                        <%if(profile!=undefined){%>
+                            <span><img src="/uploads/profileImage/<%=profile%>" class="ad_mRight10" alt="" id="profile_img" height="80px" width="80px"><span class="ad_userName ad_subheading1">Hello <%= userName %></span></span> 
+                        <% }else{ %>
+                            <span><img src="/images/svg/user_img.svg" class="ad_mRight10" alt="" id="profile_img" height="50px" width="50px"><span class="ad_userName ad_subheading1">Hello <%= userName %></span></span>
+                        <% } %>
+                        <div class="ad_profileDropdown">
+                            <ul>
+                                <li><a href="/admin/profile">Profile</a></li>
+                                <!-- <li><a href="/admin/settings">Settings</a></li> -->
+                                <li><a href="/admin/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>

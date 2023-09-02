@@ -1,0 +1,236 @@
+<% include header %>           
+<%- include('sidebar', {menu:'orders'}) %>   
+<div class="admin_main">
+    <div class="row ad_mTop50">
+        <div class="col-12 checkOrderLength">
+            <% if(order != 0 ){ %> 
+                <div class="ad_datatable_wrapper MainDiv">
+                    <div class="row align-items-center ad_mBottom20">
+                        <div class="col-12 col-xl-3 col-lg-3">
+                            <h5 class="ad_subheading">Order List</h5>
+                        </div>
+                        <div class="col-12 col-xl-7 col-lg-6 text-right">
+                            <div class="ad_search_wrapper">
+                                <input type="text" class="form-control ad_datatableSearch" placeholder="Search..." />
+                                <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" id="search">
+                                    <path d="M8.3283 0C3.73857 0 0 3.73857 0 8.3283C0 12.918 3.73857 16.6566 8.3283 16.6566C10.3242 16.6566 12.1571 15.9479 13.5937 14.7714L18.5663 19.7439C18.643 19.8239 18.7349 19.8877 18.8366 19.9316C18.9383 19.9756 19.0478 19.9988 19.1586 20C19.2694 20.0011 19.3793 19.9801 19.4819 19.9382C19.5845 19.8963 19.6777 19.8344 19.756 19.756C19.8344 19.6777 19.8963 19.5845 19.9382 19.4819C19.9801 19.3793 20.0011 19.2694 20 19.1586C19.9988 19.0478 19.9756 18.9383 19.9316 18.8366C19.8877 18.7349 19.8239 18.643 19.7439 18.5663L14.7714 13.5937C15.9479 12.1571 16.6566 10.3242 16.6566 8.3283C16.6566 3.73857 12.918 0 8.3283 0ZM8.3283 1.66566C12.0178 1.66566 14.9909 4.63876 14.9909 8.3283C14.9909 12.0178 12.0178 14.9909 8.3283 14.9909C4.63876 14.9909 1.66566 12.0178 1.66566 8.3283C1.66566 4.63876 4.63876 1.66566 8.3283 1.66566Z"></path>
+                                    </svg></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-2 col-lg-3">
+                            <div class="form-group">
+                                <label class="ad_label">Order Filter</label>
+                                <div class="ad_select_box">
+                                    <select class="ad_select form-control order_filter" data-placeholder="Select Orders">
+                                        <option></option>
+                                        <option value="today">Today's Orders</option>
+                                        <option value="all_order">All Orders</option>
+                                        <option value="delivered_order">Delivered Orders</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="hd_btn export_excel_order" type="button">Export To Excel</button>
+                    <table id="example" class="table ad_table table2excel" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Order Number</th>
+                                <th>Order Date</th>
+                                <th>Customer Name</th>
+                                <th>Amount</th>
+                                <th>Payment Type</th>
+                                <th>Payment Status</th>
+                                <th>Status</th>
+                                <th class="ignore">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                        </tbody>
+                    </table>
+                </div>
+            <% }else{ %>
+                <div class="ad_nodata_textContent mt-3">
+                    <div class="vertical_center_data">
+                        <span class="nodata_img"><img src="./assets/images/nodata_found.svg" alt="No Data Found"/></span>
+                        <p>We don't have any order to show.</p>
+                    </div>
+                </div>
+            <% } %>  
+        </div>
+    </div>
+</div>
+
+<!-- <a href="#" data-toggle="modal" data-target="#ad_view_modal"></a> -->
+<div class="modal fade ad_modal" id="ad_delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header read_bg">
+            <h5 class="modal-title" id="exampleModalLongTitle">Delete Modal</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body text-center">
+            <h3 class="ad_subheading m-0">Are you sure?</h3>
+            <p>You won't be able to revert this!</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+            <button type="button" class="ad_btn ad_hollowBtn" data-dismiss="modal">Cancel</button>
+            <button type="button" class="ad_btn bg-blue">Yes, delete it!</button>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="modal fade ad_modal" id="ad_view_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Customer Invoice</h5> 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="purchase_report_modal">
+                <table class="width_full main_table">
+                    <thead>
+                        <tr class="table_minheader">
+                            <th class="table_minheader_th">
+                                <h3>Tax Invoice</h3>
+                            </th>
+                            <th colspan="3" class="table_minheader_th">
+                                <h6><span>Order Id:</span><span class="order_id"> ODX1234CSSK1330000 </span></h6>
+                                <h6><span>Order Date:</span> 11-01-2021</h6>
+                            </th>
+                            <th colspan="2" class="table_minheader_th">
+                                <h6 class="invoice_id"><span>Invoice No. : </span><span> INOX1234CSSK1330000</span></h6>
+                                <h6 class="invoice_date"><span>Invoice Date : </span><span> 11-01-2021</span></h6>
+                            </th>
+                            <th colspan="2" class="table_minheader_th">
+                                <h6><span>GSTIN:</span> <%=merchantDetails.gst_number%> </h6>
+                                <h6><span>PAN:</span> <%=merchantDetails.pan_number%></h6>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="3" class="table_head_padder">
+                                <h4 class="print_th_h">Sold by</h4>
+                                <p class="table_head_p"><%=merchantDetails.shop_name%></p>
+                                <p class="table_head_p"><%=merchantDetails.merchant_address%> <%=merchantDetails.merchant_state%>, <%=merchantDetails.merchant_country%></p>
+                                <p class="table_head_p"><%=merchantDetails.merchant_city%> - <%=merchantDetails.pin_code%></p>
+                            </th>
+                            
+                            <th colspan="3" class="table_head_padder">
+                                <h4 class="print_th_h">Billing Address</h4>
+                                <p class="table_head_p cust_address">02/45 City State, Country</p>
+                                <p class="table_head_p cust_phone"><strong>Phone</strong> :8888552200</p>
+                                <p class="table_head_p cust_email"><strong>Email</strong> :demo@yopmail.com</p>
+                            </th>
+                            <th colspan="2" class="table_head_padder">
+                                <h2 class="print_th_h2">INVOICE</h2>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="padderLF_20"><p class="print_td_p"><strong>Invoice</strong>: <b class="td_b inv_id">55</b></p></td>
+                            <td colspan="2" class="padderLF_20"><p class="print_td_p text-right"><strong>Date</strong>: <b class="order_crtDate order_date">14-Dec-2020</b></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="padderLF_20"><p class="print_td_p"><strong>Name</strong>:  <b class="cust_name">Athokpam robindro singh Robindro</b></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" class="padderLF_20">
+                                <table class="printgodown123 mt_30 width_full product_show table-bordered">
+                                    <thead>
+                                        <tr class="vendorListHeading"><th class="print_th">Sr.No</th>
+                                            <th class="vendorListcol print_th min_width_200">Product Name</th>	
+                                            <th class="print_th">Listing Price</th>	
+                                            <th class="print_th">Qty</th>	
+                                            <th class="print_th">Discount</th>	
+                                            <th class="print_th">Selling Price</th>	
+                                            <th class="print_th">Tax</th>	
+                                            <th class="print_th text-center" colspan="2">GST</th>
+                                            <th class="print_th">IGST</th>	
+                                            <th class="print_th">Total</th>	
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="8">
+                                <div class="ad_selldv">
+                                    <p>Seller Reqistered address: <%=merchantDetails.shop_name%></p>
+                                    <p><%=merchantDetails.merchant_address%></p>
+                                    <h6>Declaration :</h6>
+                                    <p><%-merchantDetails.declaration%></p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><h6 style="margin:10px 0 0;font-weight:bold;color:#000;font-size:12px;">Conditions Apply</h6><p class="condition_apply">**<%-merchantDetails.terms_condition%></p> </td>
+                            <td colspan="2" class="td_ptext" style="padding: 0 10px;">
+                                <p>Order Through</p>
+                                <img class="ad_order_logo" src="<%if(themeSetting){%>/uploads/logo+icon/<%=themeSetting%><%}else{%>/images/logo.png<%}%>" alt="Order Through" style="max-width: 150px;max-height: 50px;">
+                            </td>
+                            <td colspan="2" class="td_ptext text-center">
+                                <div class="ad_signature">
+                                    <img src="<%if(merchantDetails.signature){%>/uploads/logo+icon/<%=merchantDetails.signature%><%}else{%>/images/signature.png<%}%> " alt="Signature Image"/>
+                                </div>
+                                <h6><%=merchantDetails.shop_name%></h6>
+                                <p>Author Signature</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade ad_modal " id="edit_status_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Order Status</h5>
+                <button type="button" class="close close_order_status" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body main_modal_body">
+                <div class="product_name">
+                    <div >
+                        <table class="table ad_table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Units</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="justify-content-start">
+                        <button type="button" class="ad_btn change_status_btn">Move to Shop</button>
+                        <!-- <button type="button" class="ad_btn ad_hollowBtn cancel_product" data-dismiss="modal" order-id="1">Cancal</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer %>
+<script src="/common_js_css/js/table2excel.min.js"></script>
+<script src="assets/js/page_js/element.js"></script>
+<script src="assets/js/page_js/order.js"></script>
+</body>
+</html>

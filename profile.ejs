@@ -1,0 +1,80 @@
+<% include header %>           
+<%- include('sidebar', {menu:'profile'}) %> 
+<div class="admin_main">  
+    <div class="hd_profile_page">
+        <!-- <div class="full_width mb-3">
+            <a href="#" class="ad_btn bg-primary-gradient float-right">Edit Profile</a>
+        </div> -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6">
+                    <div class="hd_profile_upload">
+                        <div class="text-center">
+                            <% if(user.profile != ''){ %>
+                                <span class="view_profile admin_profile_bckImg" id="objectID" style="background-image: url('/uploads/profileImage/<%= user.profile %>');"></span>
+                            <% }else{ %>
+                                <span class="view_profile admin_profile_bckImg" id="objectID" style="background-image: url('/images/svg/user_img.svg');"></span>
+                            <% } %>
+
+                            
+                            <h6 class="mt-3"><%=user.fname%> <%=user.lname%></h6>
+                            <label for="file_upload" id="uploadButton" class="ad_btn bg-primary-gradient">
+                                <input type="file" id="file_upload" accept="" class="admin_profile_change" user-id="<%=user.id%>"/>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-6 col-12" id="admin_profile_validate">
+                    <div class="hd_profile_holder">
+                        <form class="hd_profile_form">
+                            <h3 class="hd_heading">Profile</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group hd_marginBottom20">
+                                        <input type="text" name="admin_profile_fname" placeholder="First Name" class="form-control" value="<%=user.fname%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group hd_marginBottom20">
+                                        <input type="text" name="admin_profile_lname" placeholder="Last Name" class="form-control" value="<%=user.lname%>"> 
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group hd_marginBottom20">
+                                        <input type="text" name="admin_profile_phone" placeholder="Phone" class="form-control" value="<%=user.phone%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group hd_marginBottom20">
+                                        <input type="email" name="admin_profile_email" placeholder="Email Address" class="form-control" value="<%=user.email%>" disabled="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group hd_marginBottom20">
+                                        <input type="password" name="admin_profile_password" placeholder="Enter Password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group hd_marginBottom20">
+                                        <input type="password" name="admin_profile_cpassword" placeholder="Enter Confirm Password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group hd_marginBottom20">
+                                        <button class="ad_btn bg-primary-gradient admin_users_profile" user-id="<%=user.id%>">Update Profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include footer %>
+<script src="assets/js/page_js/element.js"></script>
+<script src="assets/js/page_js/profile.js"></script>
+
+</body>
+</html>

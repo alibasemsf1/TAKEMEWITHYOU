@@ -1,0 +1,82 @@
+<% include header %>           
+<%- include('sidebar', {menu:'smtp-settings'}) %>  
+
+<div class="admin_main"> 
+    <div class="hd_admin_content payment_tabs">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>Payment Method</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">
+                            <ul class="nav nav-tabs">
+                                <% if(paypal!=''){ %><li><a class="setting_tab paypal active" data-toggle="tab" href="#paypal">PayPal Credential</a></li><% } %>
+                                <% if(stripe!=''){ %><li><a class="setting_tab stripe" data-toggle="tab" href="#stripe">Stripe Credential</a></li><% } %>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane in active" id="paypal">
+                                    <h3  class="ad_subheading1">PayPal Credential</h3>
+                                    <div class="row" id="paypal_validation">
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="payment_method_field form-group">
+                                                <label class="ad_label">PayPal Client ID <span class="req_">*</span></label>
+                                                <input class="form-control" placeholder="PayPal Client ID" name="client_id" type="text" value="<%= paypalCredential.client_id %>">
+                                            </div>
+                                            <div class="payment_method_field form-group">
+                                                <label class="ad_label">PayPal Client Secret <span class="req_">*</span></label>
+                                                <input class="form-control" placeholder="PayPal Client Secret" name="client_secret" type="text" value="<%= paypalCredential.client_secret %>">
+                                            </div>
+                                            <div class="payment_method_field payment_method_radio_fld form-group">
+                                                <label class="ad_label">PayPal Sandbox Mode<span class="req_">*</span></label>
+                                                <div class="ap_autoresponder">
+                                                    <label class="ap_toggle_label">
+                                                        <input type="checkbox" class="changeStts" data-url="user_ajax/changeStatus/93" status="<%= paypalCredential.sanbox_allow %>" <% if(paypalCredential.sanbox_allow==1){%>checked<%}%>>
+                                                        <div class="ap_user_check">
+                                                            <span></span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="payment_method_button">
+                                                <button type="button" class="ad_btn ad_mTop15 bg-blue save_paypal_data">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane in fade" id="stripe">
+                                    <h3 class="ad_subheading1">Stripe Credential</h3>
+                                    <div class="row" id="stripe_validation">
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="payment_method_field form-group">
+                                                <label class="ad_label">STRIPE KEY <span class="req_">*</span></label>
+                                                <input class="form-control" placeholder="Stripe Public Key" name="stripe_key" type="text" value="<%= stripeCredential.stripe_key%>">
+                                            </div>
+                                            <div class="payment_method_field form-group">
+                                                <label class="ad_label">STRIPE SECRET <span class="req_">*</span></label>
+                                                <input class="form-control" placeholder="Stripe Secret Key" name="stripe_secret" type="text" value="<%= stripeCredential.stripe_secret%>">
+                                            </div>
+                                            <div class="payment_method_button">
+                                                <button type="button" class="ad_btn ad_mTop15 bg-blue save_stripe_data">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/payment-method.js"></script>
+
+</body>
+</html>

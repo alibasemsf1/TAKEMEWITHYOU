@@ -1,0 +1,77 @@
+<% include header %>           
+<%- include('sidebar', {menu:'smtp-settings'}) %>  
+
+<div class="admin_main"> 
+    <div class="hd_admin_content hd_setting_page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>SMTP Settings</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">
+                            <form class="ad_mail_setting" id="smtp_validation">
+                                <div class="row">
+                                    <div class="col-md-6">                   
+                                        <div class="form-group">
+                                            <label class="ad_label">Mail Driver <span class="req_">*</span></label>
+                                            <input class="form-control" placeholder="Mail Driver: (ex. smtp,gmail)" name="service" type="text" value="<%= smtpData.service %>">
+                                            <small class="text-danger"></small>
+                                        </div>
+                                    </div>                         
+                                    <div class="col-md-6">  
+                                        <div class="form-group">
+                                            <label class="ad_label">Mail Host <span class="req_">*</span></label>
+                                            <input class="form-control" placeholder="Mail Host: (ex. smtp.gmail.com)" name="host" type="text" value="<%= smtpData.host %>">
+                                            <small class="text-danger"></small>
+                                        </div>
+                                    </div>                         
+                                    <div class="col-md-6">  
+                                        <div class="form-group">
+                                            <label class="ad_label">Mail Port <span class="req_">*</span></label>
+                                            <input class="form-control" placeholder="Mail PORT: (ex. 465,587)" name="port" type="text" value="<%= smtpData.port %>">
+                                            <small class="text-danger"></small>
+                                        </div>  
+                                    </div>                         
+                                    <div class="col-md-6">                                        
+                                        <div class="form-group">
+                                        <label class="ad_label">Mail Username <span class="req_">*</span></label>
+                                        <input class="form-control" placeholder="Mail Username: (info@gmail.com)" name="gmail" type="text" value="<%= smtpData.gmail %>">
+                                        <small class="text-danger"></small>
+                                        </div>
+                                    </div>                               
+                                    <div class="col-md-6">                     
+                                        <div class="form-group">
+                                        <label class="ad_label">Mail Password <span class="req_">*</span></label>
+                                        <input class="form-control" placeholder="Mail Password" name="password" type="text">
+                                        <small class="text-danger"></small>
+                                        </div> 
+                                    </div>                         
+                                    <div class="col-md-6">                     
+                                        <div class="form-group">
+                                            <label class="ad_label">Subject </label>
+                                            <input class="form-control" placeholder="Subject" name="subject" type="text" value="<%= smtpData.subject %>">
+                                            <small class="text-danger"></small>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-md-12"> 
+                                        <button type="button" class="ad_btn ad_mTop15 save_mail_settings">Save</button>
+                                        <div class="clear-both"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/settings.js"></script>
+
+</body>
+</html>

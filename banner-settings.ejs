@@ -1,0 +1,99 @@
+<% include header %>           
+<%- include('sidebar', {menu:'settings'}) %>  
+<!-- google fonts for editor start -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Maven+Pro%7CLato%7CLobster%7CLora%7CMontserrat%7COpen+Sans%7COswald%7CPT+Sans%7CPacifico%7CRaleway%7CRoboto%7CRoboto+Slab" media="all">
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<!-- google fonts for editor end -->
+
+
+<div class="admin_main"> 
+    <div class="hd_admin_content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ad_page_title">
+                        <h2>Banner Settings</h2>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-md-12">
+                    <div class="ad_box ad_mBottom30">
+                        <div class="ad_tab_wrapper">
+                            <p><b>Note : </b> We provide a demo data related to Home Delivery.</p>
+                            <div class="row" id="banner_data">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label class="ad_label">Title <span class="req_">*</span></label>
+                                        <input type="text" name="banner_title" placeholder="Title" class="form-control" value="<%if(bannerData!=''){%><%= bannerData.jsonData.title %><%}else{%>Your Comfort is Our Business<%}%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label class="ad_label">Content <span class="req_">*</span></label>
+                                        <input type="text" name="banner_content" placeholder="Content" class="form-control" value="<%if(bannerData!=''){%><%= bannerData.jsonData.content %><%}else{%>We Bring the Store to Your Door<%}%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label class="ad_label">Button text <span class="req_">*</span></label>
+                                        <input type="text" name="banner_button_text" placeholder="Button text" class="form-control" value="<%if(bannerData!=''){%><%= bannerData.jsonData.button_text %><%}else{%>Shop Now<%}%>">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6 col-6">
+                                            <div class="form-group">
+                                                <label class="ad_label">Title Color <span class="req_">*</span></label>
+                                                <div class="ad_color_picker">
+                                                    <input type="text" name="title_color" class="ad_colorPicker" value="<%if(bannerData!=''){%><%= bannerData.jsonData.title_color %><%}else{%>#fbe636<%}%>"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-6">
+                                            <div class="form-group">
+                                                <label class="ad_label">content Color <span class="req_">*</span></label>
+                                                <div class="ad_color_picker">
+                                                    <input type="text" name="content_color" class="ad_colorPicker" value="<%if(bannerData!=''){%><%= bannerData.jsonData.content_color %><%}else{%>#fff<%}%>"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <span class="label_text">Upload Background Image <span class="req_">*</span></span>
+                                        <div class="ad_logo_picker">
+                                            <label for="choose_logo">  
+                                                <input type="file" name="banner_img" class="ad_logo_input" id="choose_logo" onchange="backgroundImagePreview(this);" required>
+                                            </label>
+                                            <span class="uploade_icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="70" height="70" x="0" y="0" viewBox="0 0 52 52"><g>
+                                                    <g xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M26,50C12.767,50,2,39.233,2,26   S12.767,2,26,2s24,10.767,24,24S39.233,50,26,50z" fill="#00d4bb" data-original="#00d4bb"></path>
+                                                        <path d="M38.5,25H27V14c0-0.553-0.448-1-1-1s-1,0.447-1,1v11H13.5c-0.552,0-1,0.447-1,1s0.448,1,1,1H25v12c0,0.553,0.448,1,1,1   s1-0.447,1-1V27h11.5c0.552,0,1-0.447,1-1S39.052,25,38.5,25z" fill="#00d4bb" data-original="#00d4bb"></path></g>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <!-- <span class="inner_text">Upload Your Logo here...</span> -->
+                                        </div>
+                                        <div class="preview_image_dv">
+                                            <img id="previewImg" src="<%if(bannerData!=''){%><%if(bannerData.jsonData.banner_image){%>/uploads/logo+icon/<%= bannerData.jsonData.banner_image %><% }else{ %>/images/bg.jpg<% } %><%}else{%>/images/bg.jpg<%}%>" alt="Placeholder">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="ad_btn ad_mTop15 bg-blue save_banner_setting">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<% include footer %>
+<script src="assets/js/page_js/element.js"></script>
+<script src='/common_js_css/js/colorpicker/spectrum.js'></script>
+<script src="/common_js_css/js/dom-to-image.min.js"></script>
+<script src="assets/js/page_js/banner-settings.js"></script>
+
+</body>
+</html>
